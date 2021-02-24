@@ -59,7 +59,7 @@ class StudentController extends Controller
           $student->lastname=$request->lastname;
           $student->email=$request->email;
           $student->phone=$request->phone;
-          $student->update();
+          $student->save();
           $msg = 'Data Updated Successfully';
           return response()->json($msg);
 
@@ -67,9 +67,7 @@ class StudentController extends Controller
     public function delete($id){
         $student=Student::findOrFail($id);
         $student->delete();
-        $msg = __('Data Deleted Successfully.');
+        $msg = 'Data deleted Successfully';
         return response()->json($msg);
-
-
     }
 }

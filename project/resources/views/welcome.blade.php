@@ -44,7 +44,7 @@
                     <td>{{ $student->lastname }}</td>
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->phone }}</td>
-                    <td><a id="edit-btn" class="btn btn-warning btn-sm">edit</a> || <a class="btn btn-danger btn-sm" id="delete-btn">delete</a></td>
+                    <td><a id="edit-btn" class="btn btn-warning btn-sm">edit</a> || <button class="btn btn-danger btn-sm" id="delete-btn">delete</button></td>
                   </tr>
 
                 @endforeach
@@ -135,9 +135,7 @@
     </div>
   </div>
 
-  {{-- Delete Modal --}}
-
-
+  {{-- delete modal --}}
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -153,7 +151,7 @@
         <div class="modal-body">
 
 
-            <input type="text" name="delete_id" id="delete_id">
+            <input type="hidden" name="delete_id" id="delete_id">
 
                      Are You sure to delete this Data?
         </div>
@@ -166,7 +164,6 @@
     </div>
   </div>
 
-  {{-- delete modal end --}}
 
 
 
@@ -183,7 +180,6 @@
 
       let fd = new FormData(this);
       var $this = $(this).parent();
-
 
     $.ajax({
            url: "{{route('store')}}",
@@ -276,7 +272,7 @@
             }
                else{
 
-                    toastr.success('Data Added Successfully','Success');
+                    toastr.success('Data updated Successfully','Success');
 
                     $('#studentmodal2').modal('toggle');
                     $('#submit-btn').prop('disabled',false);
@@ -295,9 +291,9 @@
          });
       });
 
-// delete
+    //   delete
 
-$(document).on('click','#delete-btn',function(){
+      $(document).on('click','#delete-btn',function(){
     $('#deleteModal').modal('show');
 
     $tr=$(this).closest('tr');
@@ -336,6 +332,9 @@ var id=$('#delete_id').val();
       });
 
 });
+
+
+
 
   </script>
 <script>
